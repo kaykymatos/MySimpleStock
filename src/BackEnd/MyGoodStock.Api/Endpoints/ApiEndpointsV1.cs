@@ -3,23 +3,23 @@ using MyGoodStock.Api.Services;
 
 namespace MyGoodStock.Api.Endpoints
 {
-    public static class ApiEndpoints
+    public static class ApiEndpointsV1
     {
         public static WebApplication MapProductEndpoints(this WebApplication app)
         {
-            app.MapPost("/products", async (ProductViewModel product, IProductService _service, HttpContext http) =>
+            app.MapPost("/v1/products", async (ProductViewModel product, IProductService _service, HttpContext http) =>
             {
-                var userId = http.User.FindFirst("sub")?.Value;
-                if (userId == null) return Results.Unauthorized();
+                //var userId = http.User.FindFirst("sub")?.Value;
+                //if (userId == null) return Results.Unauthorized();
 
-                product.UserId = Guid.Parse(userId);
+                //product.UserId = Guid.Parse(userId);
 
                 var res = await _service.CreateAsync(product);
 
-                return res.Success ? Results.Created($"/products/{product.Id}", product) : Results.BadRequest(res);
+                return res.Success ? Results.Created($"/v1/products/{res.Model.Id}", product) : Results.BadRequest(res);
             });
 
-            app.MapGet("/products", async (IProductService _service, HttpContext http) =>
+            app.MapGet("/v1/products", async (IProductService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -28,7 +28,7 @@ namespace MyGoodStock.Api.Endpoints
                 return Results.Ok(products);
             });
 
-            app.MapPut("/products", async (ProductViewModel product, IProductService _service, HttpContext http) =>
+            app.MapPut("/v1/products", async (ProductViewModel product, IProductService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -40,7 +40,7 @@ namespace MyGoodStock.Api.Endpoints
                 return res.Success ? Results.NoContent() : Results.BadRequest(res);
             });
 
-            app.MapDelete("/products/{id}", async (Guid id, IProductService _service, HttpContext http) =>
+            app.MapDelete("/v1/products/{id}", async (Guid id, IProductService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -57,7 +57,7 @@ namespace MyGoodStock.Api.Endpoints
         }
         public static WebApplication MapStockMovementEndpoints(this WebApplication app)
         {
-            app.MapPost("/stock-movements", async (StockMovementViewModel movement, IStockMovementService _service, HttpContext http) =>
+            app.MapPost("/v1/stock-movements", async (StockMovementViewModel movement, IStockMovementService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -65,10 +65,10 @@ namespace MyGoodStock.Api.Endpoints
                 movement.UserId = Guid.Parse(userId);
                 var res = await _service.CreateAsync(movement);
 
-                return res.Success ? Results.Created($"/stock-movements/{movement.Id}", movement) : Results.BadRequest(res);
+                return res.Success ? Results.Created($"/v1/stock-movements/{res.Model.Id}", movement) : Results.BadRequest(res);
             });
 
-            app.MapGet("/stock-movements", async (IStockMovementService _service, HttpContext http) =>
+            app.MapGet("/v1/stock-movements", async (IStockMovementService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -81,18 +81,18 @@ namespace MyGoodStock.Api.Endpoints
         }
         public static WebApplication MapSaleEndpoints(this WebApplication app)
         {
-            app.MapPost("/sales", async (SaleViewModel sale, ISaleService _service, HttpContext http) =>
+            app.MapPost("/v1/sales", async (SaleViewModel sale, ISaleService _service, HttpContext http) =>
             {
-                var userId = http.User.FindFirst("sub")?.Value;
-                if (userId == null) return Results.Unauthorized();
+                //var userId = http.User.FindFirst("sub")?.Value;
+                //if (userId == null) return Results.Unauthorized();
 
-                sale.UserId = Guid.Parse(userId);
+                //sale.UserId = Guid.Parse(userId);
                 var res = await _service.CreateAsync(sale);
 
-                return res.Success ? Results.Created($"/sales/{sale.Id}", sale) : Results.BadRequest(res);
+                return res.Success ? Results.Created($"/v1/sales/{res.Model.Id}", sale) : Results.BadRequest(res);
             });
 
-            app.MapGet("/sales", async (ISaleService _service, HttpContext http) =>
+            app.MapGet("/v1/sales", async (ISaleService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
@@ -105,12 +105,12 @@ namespace MyGoodStock.Api.Endpoints
         }
         public static WebApplication MapProfitReportEndpoints(this WebApplication app)
         {
-            app.MapGet("/profit-reports", async (IMonthlyProfitReportService _sales, HttpContext http) =>
+            app.MapGet("/v1/profit-reports", async (IMonthlyProfitReportService _service, HttpContext http) =>
             {
                 var userId = http.User.FindFirst("sub")?.Value;
                 if (userId == null) return Results.Unauthorized();
 
-                var reports = await _sales.GetAllAsync(Guid.Parse(userId));
+                var reports = await _service.GetAllAsync(Guid.Parse(userId));
                 return Results.Ok(reports);
             });
             return app;

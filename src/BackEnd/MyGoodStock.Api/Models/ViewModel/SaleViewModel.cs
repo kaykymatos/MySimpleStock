@@ -1,4 +1,6 @@
-﻿namespace MyGoodStock.Api.Models.ViewModel
+﻿using MyGoodStock.Api.Models.Entity;
+
+namespace MyGoodStock.Api.Models.ViewModel
 {
     public class SaleViewModel : BaseViewModel
     {

@@ -20,59 +20,63 @@ namespace MyGoodStock.Api.Services
             _validator = validator;
         }
 
-        public virtual async Task<ResponseApiModel> CreateAsync(T entity)
+        public virtual async Task<ResponseApiModel<T>> CreateAsync(T entity)
         {
             var validation = _validator.Validate(entity);
             if (!validation.IsValid)
-                return new ResponseApiModel(validation.Errors);
+                return new ResponseApiModel<T>(validation.Errors);
             try
             {
                 var mapperModel = _mapper.Map<A>(entity);
                 var res = await _repository.CreateAsync(mapperModel);
                 if (res == null)
-                    return new ResponseApiModel("Erro ao tentar criar registro!");
-                return new ResponseApiModel();
+                    return new ResponseApiModel<T>("Erro ao tentar criar registro!");
+
+                entity.Id = mapperModel.Id;
+                return new ResponseApiModel<T>(entity);
             }
             catch (Exception)
             {
-                return new ResponseApiModel("Erro interno no servidor!");
+                return new ResponseApiModel<T>("Erro interno no servidor!");
             }
 
         }
 
-        public virtual async Task<ResponseApiModel> UpdateAsync(T entity)
+        public virtual async Task<ResponseApiModel<T>> UpdateAsync(T entity)
         {
             var validation = _validator.Validate(entity);
             if (!validation.IsValid)
-                return new ResponseApiModel(validation.Errors);
+                return new ResponseApiModel<T>(validation.Errors);
             try
             {
                 var mapperModel = _mapper.Map<A>(entity);
                 var res = await _repository.UpdateAsync(mapperModel);
                 if (res == null)
-                    return new ResponseApiModel("Erro ao tentar atualizar registro!");
-                return new ResponseApiModel();
+                    return new ResponseApiModel<T>("Erro ao tentar atualizar registro!");
+
+                entity.Id = mapperModel.Id;
+                return new ResponseApiModel<T>(entity);
             }
             catch (Exception)
             {
-                return new ResponseApiModel("Erro interno no servidor!");
+                return new ResponseApiModel<T>("Erro interno no servidor!");
             }
         }
 
-        public virtual async Task<ResponseApiModel> DeleteAsync(Guid id, Guid userId)
+        public virtual async Task<ResponseApiModel<T>> DeleteAsync(Guid id, Guid userId)
         {
             try
             {
                 var entity = await _repository.GetById(id, userId);
                 if (entity == null)
-                    return new ResponseApiModel("Id", "Id não encontrado!");
+                    return new ResponseApiModel<T>("Id", "Id não encontrado!");
                 var mapperModel = _mapper.Map<A>(entity);
                 await _repository.DeleteAsync(mapperModel);
-                return new ResponseApiModel();
+                return new ResponseApiModel<T>();
             }
             catch (Exception)
             {
-                return new ResponseApiModel("Erro interno no servidor");
+                return new ResponseApiModel<T>("Erro interno no servidor");
             }
         }
 
