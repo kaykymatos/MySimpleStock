@@ -55,30 +55,7 @@ namespace MyGoodStock.Api.Endpoints
 
             return app;
         }
-        public static WebApplication MapStockMovementEndpoints(this WebApplication app)
-        {
-            app.MapPost("/v1/stock-movements", async (StockMovementViewModel movement, IStockMovementService _service, HttpContext http) =>
-            {
-                var userId = http.User.FindFirst("sub")?.Value;
-                if (userId == null) return Results.Unauthorized();
-
-                movement.UserId = Guid.Parse(userId);
-                var res = await _service.CreateAsync(movement);
-
-                return res.Success ? Results.Created($"/v1/stock-movements/{res.Model.Id}", movement) : Results.BadRequest(res);
-            });
-
-            app.MapGet("/v1/stock-movements", async (IStockMovementService _service, HttpContext http) =>
-            {
-                var userId = http.User.FindFirst("sub")?.Value;
-                if (userId == null) return Results.Unauthorized();
-
-                var movements = await _service.GetAllAsync(Guid.Parse(userId));
-                return Results.Ok(movements);
-            });
-
-            return app;
-        }
+       
         public static WebApplication MapSaleEndpoints(this WebApplication app)
         {
             app.MapPost("/v1/sales", async (SaleViewModel sale, ISaleService _service, HttpContext http) =>
