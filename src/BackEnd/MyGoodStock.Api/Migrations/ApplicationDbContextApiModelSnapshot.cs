@@ -22,14 +22,54 @@ namespace MyGoodStock.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MyGoodStock.Api.Models.Entity.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("MyGoodStock.Api.Models.Entity.MonthlyProfitReport", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("Month")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("TotalProfit")
                         .HasColumnType("decimal(18,2)");
@@ -50,6 +90,9 @@ namespace MyGoodStock.Api.Migrations
 
                     b.Property<decimal>("CostPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -81,6 +124,12 @@ namespace MyGoodStock.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("date");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
@@ -92,6 +141,8 @@ namespace MyGoodStock.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.ToTable("Sales");
                 });
 
@@ -100,6 +151,9 @@ namespace MyGoodStock.Api.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("date");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -125,34 +179,15 @@ namespace MyGoodStock.Api.Migrations
                     b.ToTable("SaleItems");
                 });
 
-            modelBuilder.Entity("MyGoodStock.Api.Models.Entity.StockMovement", b =>
+            modelBuilder.Entity("MyGoodStock.Api.Models.Entity.Sale", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                    b.HasOne("MyGoodStock.Api.Models.Entity.Client", "Client")
+                        .WithMany("Sales")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("MovementType")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("StockMovements");
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("MyGoodStock.Api.Models.Entity.SaleItem", b =>
@@ -174,15 +209,9 @@ namespace MyGoodStock.Api.Migrations
                     b.Navigation("Sale");
                 });
 
-            modelBuilder.Entity("MyGoodStock.Api.Models.Entity.StockMovement", b =>
+            modelBuilder.Entity("MyGoodStock.Api.Models.Entity.Client", b =>
                 {
-                    b.HasOne("MyGoodStock.Api.Models.Entity.StockMovement", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("MyGoodStock.Api.Models.Entity.Sale", b =>

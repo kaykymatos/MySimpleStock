@@ -13,7 +13,6 @@ namespace MyGoodStock.Api.ModelMapper
             CreateMap<Product, ProductViewModel>().ReverseMap();
             CreateMap<Sale, SaleViewModel>().ReverseMap();
             CreateMap<SaleItem, SaleItemViewModel>().ReverseMap();
-            CreateMap<StockMovement, StockMovementViewModel>().ReverseMap();
         }
     }
 }

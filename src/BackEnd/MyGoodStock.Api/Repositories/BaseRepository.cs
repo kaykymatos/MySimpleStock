@@ -14,6 +14,7 @@ namespace MyGoodStock.Api.Repositories
 
         public virtual async Task<T> CreateAsync(T entity)
         {
+            entity.CreationDate = DateTime.Now;
             _context.Set<T>().Add(entity);
             await _context.SaveChangesAsync();
             //entity.Id = id;
@@ -32,6 +33,11 @@ namespace MyGoodStock.Api.Repositories
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
+            var existingEntity = await _context.Set<T>().FindAsync(entity.Id);
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).State = EntityState.Detached; // Remove a instância rastreada
+            }
             _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
             return entity;

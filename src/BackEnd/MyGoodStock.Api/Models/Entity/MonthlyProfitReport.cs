@@ -2,8 +2,7 @@
 {
     public class MonthlyProfitReport : BaseEntity
     {
-        public DateTime Month { get; set; }
+        public int Month { get; set; }
         public decimal TotalProfit { get; set; }
-        public Guid UserId { get; set; }
     }
 }

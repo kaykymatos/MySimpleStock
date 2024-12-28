@@ -3,7 +3,7 @@ using MyGoodStock.Api.Models.Entity;
 
 namespace MyGoodStock.Api.Repositories
 {
-    public class ProductRepository : BaseRepository<StockMovement>, IProductRepository
+    public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
         public ProductRepository(ApplicationDbContextApi context) : base(context)
         {

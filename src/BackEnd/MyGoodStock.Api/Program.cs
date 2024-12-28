@@ -24,7 +24,7 @@ builder.Services.AddScoped<IValidator<MonthlyProfitReportViewModel>, MonthlyProf
 builder.Services.AddScoped<IValidator<ProductViewModel>, ProductValidator>();
 builder.Services.AddScoped<IValidator<SaleItemViewModel>, SaleItemValidator>();
 builder.Services.AddScoped<IValidator<SaleViewModel>, SaleValidator>();
-builder.Services.AddScoped<IValidator<StockMovementViewModel>, StockMovementValidator>();
+builder.Services.AddScoped<IValidator<ClientViewModel>, ClientValidator>();
 
 builder.Services.AddScoped(typeof(BaseRepository<>)); // Adiciona suporte para repositórios genéricos
 
@@ -33,13 +33,11 @@ builder.Services.AddScoped<IMonthlyProfitReportRepository, MonthlyProfitReportRe
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ISaleItemRepository, SaleItemRepository>();
 builder.Services.AddScoped<ISaleRepository, SaleRepository>();
-builder.Services.AddScoped<IStockMovementRepository, StockMovementRepository>();
 
 builder.Services.AddScoped<IMonthlyProfitReportService, MonthlyProfitReportService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISaleItemService, SaleItemService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
-builder.Services.AddScoped<IStockMovementService, StockMovementService>();
 
 
 var app = builder.Build();
@@ -55,15 +53,7 @@ app.UseHttpsRedirection();
 
 
 app.MapProductEndpoints()
-    .MapStockMovementEndpoints()
     .MapSaleEndpoints()
     .MapProfitReportEndpoints();
-
-app.MapGet("/weatherforecast", () =>
-{
-
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
 
 app.Run();

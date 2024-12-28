@@ -2,7 +2,7 @@
 
 namespace MyGoodStock.Api.Repositories
 {
-    public interface IProductRepository : IBaseRepository<StockMovement>
+    public interface IProductRepository : IBaseRepository<Product>
     {
     }
 }

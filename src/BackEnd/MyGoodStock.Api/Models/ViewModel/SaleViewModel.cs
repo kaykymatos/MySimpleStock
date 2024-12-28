@@ -6,6 +6,6 @@ namespace MyGoodStock.Api.Models.ViewModel
     {
         public DateTime Date { get; set; }
         public decimal TotalValue { get; set; }
-        public Guid UserId { get; set; }
+        public ICollection<SaleItemViewModel> SaleItems { get; set; }
     }
 }

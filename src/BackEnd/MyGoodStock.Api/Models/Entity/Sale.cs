@@ -4,7 +4,8 @@
     {
         public DateTime Date { get; set; }
         public decimal TotalValue { get; set; }
+        public Guid ClientId { get; set; }
+        public Client Client { get; set; }
         public ICollection<SaleItem> SaleItems { get; set; }
-        public Guid UserId { get; set; }
     }
 }

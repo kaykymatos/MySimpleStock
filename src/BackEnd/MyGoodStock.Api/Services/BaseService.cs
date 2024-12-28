@@ -50,6 +50,7 @@ namespace MyGoodStock.Api.Services
             try
             {
                 var mapperModel = _mapper.Map<A>(entity);
+
                 var res = await _repository.UpdateAsync(mapperModel);
                 if (res == null)
                     return new ResponseApiModel<T>("Erro ao tentar atualizar registro!");
@@ -70,8 +71,8 @@ namespace MyGoodStock.Api.Services
                 var entity = await _repository.GetById(id, userId);
                 if (entity == null)
                     return new ResponseApiModel<T>("Id", "Id não encontrado!");
-                var mapperModel = _mapper.Map<A>(entity);
-                await _repository.DeleteAsync(mapperModel);
+
+                await _repository.DeleteAsync(entity);
                 return new ResponseApiModel<T>();
             }
             catch (Exception)
