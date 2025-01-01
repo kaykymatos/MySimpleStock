@@ -14,6 +14,9 @@ namespace MyGoodStock.Api.Validators
             RuleFor(x => x.TotalValue)
                 .GreaterThan(0).WithMessage("O valor total deve ser maior que zero.");
 
+            RuleFor(x => x.ClientId)
+                .NotEmpty().WithMessage("O clientId deve ser preenchido.");
+
             RuleForEach(x => x.SaleItems)
             .SetValidator(new SaleItemValidator());
 

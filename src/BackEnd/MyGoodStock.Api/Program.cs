@@ -17,6 +17,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<ApplicationDbContextApi>(options =>
                     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin() // Permite qualquer origem
+              .AllowAnyMethod() // Permite qualquer método HTTP
+              .AllowAnyHeader(); // Permite qualquer cabeçalho
+    });
+});
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -48,6 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

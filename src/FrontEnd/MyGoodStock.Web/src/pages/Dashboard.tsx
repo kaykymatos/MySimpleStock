@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Package, 
@@ -27,7 +27,15 @@ const data = [
   { name: 'Jun', value: 900 },
 ];
 
-const StatCard = ({ icon: Icon, title, value, trend, trendValue }) => (
+interface StatCardProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Define o tipo do ícone como um componente React que aceita props SVG
+  title: string;
+  value: string | number;
+  trend: "up" | "down";
+  trendValue: string | number;
+}
+
+const StatCard: FC<StatCardProps> = ({ icon: Icon, title, value, trend, trendValue }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}

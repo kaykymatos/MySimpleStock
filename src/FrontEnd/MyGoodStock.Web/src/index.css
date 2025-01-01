@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.table-container {
+  display: inline-block;
+  width: 100%;
+  padding: 5px; /* Espaço para mostrar o gradiente */
+  background: linear-gradient(
+    45deg,
+    #1e3a8a,
+    #2563eb
+  ); /* Gradiente azul escuro para combinar com o fundo do layout */
+  border-radius: 12px; /* Borda arredondada no contêiner */
+  margin-bottom: 20px; /* Espaço abaixo da tabela */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-radius: 10px;
+  background-color: #1f2937; /* Fundo escuro para a tabela, em harmonia com o tema */
+  overflow: hidden; /* Garante que o conteúdo respeite as bordas arredondadas */
+  color: #e5e7eb; /* Cor do texto mais clara para contraste com o fundo escuro */
+}
+
+th,
+td {
+  border: 1px solid #3b82f6; /* Bordas em azul para combinar com o tema */
+  padding: 8px;
+  text-align: left;
+  color: #e5e7eb; /* Cor do texto */
+}
+
+th {
+  background-color: #2563eb; /* Fundo azul para o cabeçalho */
+  color: #fff; /* Texto branco no cabeçalho */
+}
+
+tr:nth-child(even) {
+  background-color: #2d3748; /* Fundo mais escuro para linhas pares */
+}
+
+tr:hover {
+  background-color: #374151; /* Fundo mais claro ao passar o mouse */
+}
+.error-text {
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  color: #ff4c4c;
+  font-weight: bold;
+}

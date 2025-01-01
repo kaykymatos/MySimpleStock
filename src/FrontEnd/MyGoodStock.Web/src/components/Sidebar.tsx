@@ -1,26 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Package, 
-  Users, 
-  TrendingUp,
-  Settings,
-  Truck,
-  History,
-  AlertCircle
-} from 'lucide-react';
 import { motion } from 'framer-motion';
+import {
+  LayoutDashboard,
+  List,
+  Package,
+  PersonStanding,
+  TrendingUp
+} from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
-  { icon: Package, label: 'Inventory', path: '/inventory' },
-  { icon: Truck, label: 'Suppliers', path: '/suppliers' },
-  { icon: History, label: 'Transactions', path: '/transactions' },
-  { icon: TrendingUp, label: 'Analytics', path: '/analytics' },
-  { icon: AlertCircle, label: 'Alerts', path: '/alerts' },
-  { icon: Users, label: 'Users', path: '/users' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
+  { icon: Package, label: 'Produtos', path: '/products' },
+  { icon: PersonStanding, label: 'Clientes', path: '/clients' },
+  { icon: List, label: 'Vendas', path: '/sales' },
+  { icon: TrendingUp, label: 'Relatórios', path: '/reports' },
 ];
 
 export default function Sidebar() {
