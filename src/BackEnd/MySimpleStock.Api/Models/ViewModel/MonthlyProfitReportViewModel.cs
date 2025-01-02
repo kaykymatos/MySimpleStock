@@ -1,0 +1,10 @@
+﻿using MySimpleStock.Api.Models.ViewModel;
+
+namespace MySimpleStock.Api.Models.ViewModel
+{
+    public class MonthlyProfitReportViewModel : BaseViewModel
+    {
+        public int Month { get; set; }
+        public decimal TotalProfit { get; set; }
+    }
+}
