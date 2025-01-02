@@ -1,5 +1,5 @@
-import { PageLayout } from "../PageLayout";
+import { SaleForm } from "./SaleForm";
 
 export const SaleCreate=()=>{
-    return <PageLayout title="Produtos"><></></PageLayout>;
+     return <SaleForm />;
 }

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DefaultButton } from "../../components/DefaultButton";
 import { SaleService } from "../../services/SaleService";
-import { SaleViewModel } from "../../types";
+import { SaleModel } from "../../types";
 import { PageLayout } from "../PageLayout";
 
 export const SaleList = () => {
-  const [sales, setSales] = useState<SaleViewModel[]>([]);
+  const [sales, setSales] = useState<SaleModel[]>([]);
   const saleService = new SaleService();
   const navigate = useNavigate();
   useEffect(() => {

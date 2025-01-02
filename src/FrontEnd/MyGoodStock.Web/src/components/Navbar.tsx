@@ -42,7 +42,7 @@ export default function Navbar() {
           </button>
           
           <div className="flex items-center gap-3">
-            <span className="text-sm">John Doe</span>
+            <span className="text-sm">Kayky</span>
             <button className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
               <User className="h-6 w-6" />
             </button>

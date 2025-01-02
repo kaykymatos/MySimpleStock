@@ -1,5 +1,5 @@
-import { PageLayout } from "../PageLayout"
+import { ClientForm } from "./ClientForm";
 
-export const ClientCreate=()=>{
-    return  <PageLayout title="Clientes"><></></PageLayout>
-}
+export const ClientCreate = () => {
+  return <ClientForm />;
+};

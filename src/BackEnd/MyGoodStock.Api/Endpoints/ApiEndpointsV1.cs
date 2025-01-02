@@ -19,6 +19,16 @@ namespace MyGoodStock.Api.Endpoints
                 return res.Success ? Results.Created($"/v1/products/{res.Model.Id}", product) : Results.BadRequest(res);
             });
 
+            app.MapGet("/v1/products/{id:Guid}", async (Guid id, IProductService _service, HttpContext http) =>
+            {
+                //var userId = http.User.FindFirst("sub")?.Value;
+                //if (userId == null) return Results.Unauthorized();
+
+                var products = await _service.GetOneAsync(id,Guid.Parse("cd396dc0-10de-4522-9f63-e5e705032704"));
+                if (products == null)
+                    return Results.NotFound();
+                return Results.Ok(products);
+            });
             app.MapGet("/v1/products", async (IProductService _service, HttpContext http) =>
             {
                 //var userId = http.User.FindFirst("sub")?.Value;

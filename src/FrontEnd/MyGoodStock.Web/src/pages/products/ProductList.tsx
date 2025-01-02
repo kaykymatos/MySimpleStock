@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DefaultButton } from "../../components/DefaultButton";
 import { ProductService } from "../../services/ProductService";
-import { ProductViewModel } from "../../types";
+import { ProductModel } from "../../types";
 import { PageLayout } from "../PageLayout";
 export const ProductList = () => {
-  const [products, setProducts] = useState<ProductViewModel[]>([]);
+  const [products, setProducts] = useState<ProductModel[]>([]);
   const productService = new ProductService();
   const navigate = useNavigate();
   useEffect(() => {

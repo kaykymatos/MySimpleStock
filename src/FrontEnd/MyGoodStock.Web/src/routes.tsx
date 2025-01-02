@@ -25,11 +25,11 @@ export const routes = createBrowserRouter([
         element: <ClientsPages.ClientCreate />,
       },
       {
-        path: "/clients/edit",
+        path: "/clients/edit/:id",
         element: <ClientsPages.ClientEdit />,
       },
       {
-        path: "/clients/delete",
+        path: "/clients/delete/:id",
         element: <ClientsPages.ClientDelete />,
       },
 
@@ -42,12 +42,18 @@ export const routes = createBrowserRouter([
         element: <ProductsPages.ProductCreate />,
       },
       {
-        path: "/products/edit",
+        path: "/products/edit/:id",
         element: <ProductsPages.ProductEdit />,
       },
       {
-        path: "/products/delete",
+        path: "/products/delete/:id",
         element: <ProductsPages.ProductDelete />,
+      },
+
+
+      {
+        path: "/reports",
+        element: <ReportPages.Reports />,
       },
 
       {
@@ -59,17 +65,8 @@ export const routes = createBrowserRouter([
         element: <SalesPages.SaleCreate />,
       },
       {
-        path: "/sales/edit",
-        element: <SalesPages.SaleEdit />,
-      },
-      {
-        path: "/sales/delete",
+        path: "/sales/delete/:id",
         element: <SalesPages.SaleDelete />,
-      },
-
-      {
-        path: "/reports",
-        element: <ReportPages.Reports />,
       },
 
       {

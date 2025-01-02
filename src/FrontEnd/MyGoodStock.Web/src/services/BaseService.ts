@@ -1,7 +1,7 @@
-import { BaseViewModel, ResponseApiModel } from "../types";
+import { BaseModel, ResponseApiModel } from "../types";
 import { ApiConfig } from "./ApiConfig";
 
-export class BaseService<T extends BaseViewModel> {
+export class BaseService<T extends BaseModel> {
   private endpoint: string;
 
   constructor(endpoint: string) {

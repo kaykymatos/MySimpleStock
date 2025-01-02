@@ -1,123 +1,60 @@
 // BaseViewModel
-export class BaseViewModel {
-  id: string;
-  userId: string;
+export class BaseModel {
+  id: string = "";
+  userId: string = "";
 
-  constructor(id: string, userId: string) {
-    this.id = id;
-    this.userId = userId;
-  }
 }
 
 // ProductViewModel
-export class ProductViewModel extends BaseViewModel {
+export class ProductModel extends BaseModel {
   name: string = "";
   description: string = "";
-  costPrice: number;
-  salePrice: number;
-  quantityInStock: number;
+  costPrice: number = 0;
+  salePrice: number = 0;
+  quantityInStock: number = 0;
 
-  constructor(
-    id: string,
-    userId: string,
-    name: string,
-    description: string,
-    costPrice: number,
-    salePrice: number,
-    quantityInStock: number
-  ) {
-    super(id, userId);
-    this.name = name;
-    this.description = description;
-    this.costPrice = costPrice;
-    this.salePrice = salePrice;
-    this.quantityInStock = quantityInStock;
-  }
 }
 
 // ClientViewModel
-export class ClientViewModel extends BaseViewModel {
+export class ClientModel extends BaseModel {
   name: string = "";
   address: string = "";
   cep: string = "";
   number: string = "";
 
-  constructor(
-    id: string,
-    userId: string,
-    name: string,
-    address: string,
-    cep: string,
-    number: string
-  ) {
-    super(id, userId);
-    this.name = name;
-    this.address = address;
-    this.cep = cep;
-    this.number = number;
-  }
+ 
 }
 
 // MonthlyProfitReportViewModel
-export class MonthlyProfitReportViewModel extends BaseViewModel {
-  month: number;
-  totalProfit: number;
+export class MonthlyProfitReportModel extends BaseModel {
+  month: number = 0;
+  totalProfit: number = 0;
 
-  constructor(id: string, userId: string, month: number, totalProfit: number) {
-    super(id, userId);
-    this.month = month;
-    this.totalProfit = totalProfit;
-  }
+ 
 }
 
 // SaleItemViewModel
-export class SaleItemViewModel extends BaseViewModel {
-  saleId: string;
-  productId: string;
-  quantity: number;
-  price: number;
+export class SaleItemModel extends BaseModel {
+  saleId: string = "";
+  productId: string = "";
+  quantity: number = 0;
+  price: number = 0;
 
-  constructor(
-    id: string,
-    userId: string,
-    saleId: string,
-    productId: string,
-    quantity: number,
-    price: number
-  ) {
-    super(id, userId);
-    this.saleId = saleId;
-    this.productId = productId;
-    this.quantity = quantity;
-    this.price = price;
-  }
+  
 }
 
 // SaleViewModel
-export class SaleViewModel extends BaseViewModel {
-  date: Date;
-  totalValue: number;
-  clientId: string;
-  saleItems: SaleItemViewModel[];
+export class SaleModel extends BaseModel {
+  date: Date = new Date();
+  totalValue: number = 0;
+  clientId: string="";
+  saleItems: SaleItemModel[]=[];
 
-  constructor(
-    id: string,
-    userId: string,
-    date: Date,
-    totalValue: number,
-    clientId: string,
-    saleItems: SaleItemViewModel[]
-  ) {
-    super(id, userId);
-    this.date = date;
-    this.totalValue = totalValue;
-    this.clientId = clientId;
-    this.saleItems = saleItems;
-  }
+ 
 }
 
 // ResponseApiModel
-export class ResponseApiModel<T extends BaseViewModel> {
+export class ResponseApiModel<T extends BaseModel> {
   success: boolean = false;
   isInternalError: boolean = false;
   internalErrorMessage: string = "";
@@ -125,9 +62,4 @@ export class ResponseApiModel<T extends BaseViewModel> {
   errors: { property: string; message: string }[] = [];
   model?: T;
 
-  
-  constructor(
-    
-  ) {
-  }
 }

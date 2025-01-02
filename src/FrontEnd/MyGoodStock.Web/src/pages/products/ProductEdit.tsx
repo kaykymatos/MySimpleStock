@@ -1,5 +1,7 @@
-import { PageLayout } from "../PageLayout";
+import { useParams } from "react-router-dom";
+import { ProductForm } from "./ProductForm";
 
 export const ProductEdit = () => {
-  return  <PageLayout title="Produtos"><></></PageLayout>
+  const { id } = useParams();
+  return <ProductForm id={id} />;
 };

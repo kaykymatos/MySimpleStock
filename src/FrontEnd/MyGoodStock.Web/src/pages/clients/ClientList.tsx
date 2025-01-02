@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DefaultButton } from "../../components/DefaultButton";
 import { ClientService } from "../../services/ClientService";
-import { ClientViewModel } from "../../types";
+import { ClientModel } from "../../types";
 import { PageLayout } from "../PageLayout";
 
 export const ClientList = () => {
-  const [clients, setClients] = useState<ClientViewModel[]>([]);
+  const [clients, setClients] = useState<ClientModel[]>([]);
   const clientService = new ClientService();
  const navigate = useNavigate();
   useEffect(() => {
