@@ -42,11 +42,13 @@ builder.Services.AddScoped<IMonthlyProfitReportRepository, MonthlyProfitReportRe
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ISaleItemRepository, SaleItemRepository>();
 builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddScoped<IMonthlyProfitReportService, MonthlyProfitReportService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISaleItemService, SaleItemService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 
 var app = builder.Build();
@@ -64,6 +66,7 @@ app.UseHttpsRedirection();
 
 app.MapProductEndpoints()
     .MapSaleEndpoints()
-    .MapProfitReportEndpoints();
+    .MapProfitReportEndpoints()
+    .MapClientEndpoints();
 
 app.Run();

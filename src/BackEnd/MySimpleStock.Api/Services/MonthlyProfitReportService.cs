@@ -15,9 +15,9 @@ namespace MySimpleStock.Api.Services
             _repostory = repository;
         }
 
-        public async Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, Guid userId)
+        public async Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, string userId)
         {
-            return _mapper.Map<MonthlyProfitReportViewModel>(await _repostory.GetMonthlyProfitReportByMonth(month, userId));
+            return _mapper.Map<MonthlyProfitReportViewModel>(await _repostory.GetMonthlyProfitReportByMonth(month,Guid.Parse(userId) ));
         }
     }
 }

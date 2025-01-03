@@ -27,9 +27,9 @@ namespace MySimpleStock.Api.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public virtual async Task<IEnumerable<T>> GetAll(Guid userId) => await _context.Set<T>().Where(x => x.UserId == userId).ToListAsync();
+        public virtual async Task<IEnumerable<T>> GetAll(Guid userId) => await _context.Set<T>().ToListAsync();
 
-        public virtual async Task<T> GetById(Guid id, Guid userId) => await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
+        public virtual async Task<T> GetById(Guid id, Guid userId) => await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
 
         public virtual async Task<T> UpdateAsync(T entity)
         {

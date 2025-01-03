@@ -12,7 +12,7 @@ export const ClientDelete = () => {
   const navigate = useNavigate()
   const service = new ClientService();
   useEffect(() => {
-    const fetchGraphic = async () => {
+    const fetchInfo = async () => {
       try {
         const result = await service.getById(id!);
         if (result !== null) setItem(result);
@@ -24,7 +24,7 @@ export const ClientDelete = () => {
       }
     };
 
-    fetchGraphic();
+    fetchInfo();
   }, []);
 
   const handleDelete = async () => {

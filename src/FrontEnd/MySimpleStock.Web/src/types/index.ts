@@ -21,8 +21,6 @@ export class ClientModel extends BaseModel {
   address: string = "";
   cep: string = "";
   number: string = "";
-
- 
 }
 
 // MonthlyProfitReportViewModel

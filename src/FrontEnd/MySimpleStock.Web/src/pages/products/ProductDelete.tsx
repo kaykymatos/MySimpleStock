@@ -12,7 +12,7 @@ export const ProductDelete = () => {
   const navigate = useNavigate()
   const service = new ProductService();
   useEffect(() => {
-    const fetchGraphic = async () => {
+    const fetchInfo = async () => {
       try {
         const result = await service.getById(id!);
         if (result !== null) setItem(result);
@@ -24,7 +24,7 @@ export const ProductDelete = () => {
       }
     };
 
-    fetchGraphic();
+    fetchInfo();
   }, []);
 
   const handleDelete = async () => {

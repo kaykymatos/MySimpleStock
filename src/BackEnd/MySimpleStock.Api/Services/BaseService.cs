@@ -22,6 +22,7 @@ namespace MySimpleStock.Api.Services
 
         public virtual async Task<ResponseApiModel<T>> CreateAsync(T entity)
         {
+            entity.Id = null;
             var validation = _validator.Validate(entity);
             if (!validation.IsValid)
                 return new ResponseApiModel<T>(validation.Errors);
@@ -32,7 +33,7 @@ namespace MySimpleStock.Api.Services
                 if (res == null)
                     return new ResponseApiModel<T>("Erro ao tentar criar registro!");
 
-                entity.Id = mapperModel.Id;
+                entity.Id = mapperModel.Id.ToString();
                 return new ResponseApiModel<T>(entity);
             }
             catch (Exception)
@@ -55,7 +56,7 @@ namespace MySimpleStock.Api.Services
                 if (res == null)
                     return new ResponseApiModel<T>("Erro ao tentar atualizar registro!");
 
-                entity.Id = mapperModel.Id;
+                entity.Id = mapperModel.Id.ToString();
                 return new ResponseApiModel<T>(entity);
             }
             catch (Exception)

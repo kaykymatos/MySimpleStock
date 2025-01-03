@@ -19,9 +19,7 @@ export class BaseService<T extends BaseModel> {
 
   async getById(id: string): Promise<T | null> {
     try {
-      const response = await ApiConfig(this.endpoint).get<T>(
-        `/${id}`
-      );
+      const response = await ApiConfig(this.endpoint).get<T>(`/${id}`);
       return response.data;
     } catch (error) {
       return null;
@@ -35,14 +33,18 @@ export class BaseService<T extends BaseModel> {
         model
       );
       return response.data;
-    } catch (error) {
-      var res = new ResponseApiModel<T>();
-      res.errors = [];
-      res.internalErrorMessage = "" + error;
-      res.isInternalError = true;
-      res.statusCode = 500;
-      res.success = false;
-      return res;
+    } catch (error: any) {
+      if (error.response.status == 400) {
+        return error.response.data;
+      } else {
+        var res = new ResponseApiModel<T>();
+        res.errors = [];
+        res.internalErrorMessage = "" + error;
+        res.isInternalError = true;
+        res.statusCode = 500;
+        res.success = false;
+        return res;
+      }
     }
   }
 
@@ -53,14 +55,18 @@ export class BaseService<T extends BaseModel> {
         model
       );
       return response.data;
-    } catch (error) {
-      var res = new ResponseApiModel<T>();
-      res.errors = [];
-      res.internalErrorMessage = "" + error;
-      res.isInternalError = true;
-      res.statusCode = 500;
-      res.success = false;
-      return res;
+    } catch (error: any) {
+      if (error.response.status == 400) {
+        return error.response.data;
+      } else {
+        var res = new ResponseApiModel<T>();
+        res.errors = [];
+        res.internalErrorMessage = "" + error;
+        res.isInternalError = true;
+        res.statusCode = 500;
+        res.success = false;
+        return res;
+      }
     }
   }
 
@@ -70,14 +76,19 @@ export class BaseService<T extends BaseModel> {
         ResponseApiModel<T>
       >(`/${id}`);
       return response.data;
-    } catch (error) {
-      var res = new ResponseApiModel<T>();
-      res.errors = [];
-      res.internalErrorMessage = "" + error;
-      res.isInternalError = true;
-      res.statusCode = 500;
-      res.success = false;
-      return res;
+    } catch (error: any) {
+      
+      if (error.response.status == 400) {
+        return error.response.data;
+      } else {
+        var res = new ResponseApiModel<T>();
+        res.errors = [];
+        res.internalErrorMessage = "" + error;
+        res.isInternalError = true;
+        res.statusCode = 500;
+        res.success = false;
+        return res;
+      }
     }
   }
 }

@@ -5,6 +5,6 @@ namespace MySimpleStock.Api.Services
 {
     public interface IMonthlyProfitReportService : IBaseService<MonthlyProfitReportViewModel>
     {
-        Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, Guid userId);
+        Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, string userId);
     }
 }

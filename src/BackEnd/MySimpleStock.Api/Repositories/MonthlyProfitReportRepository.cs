@@ -15,7 +15,7 @@ namespace MySimpleStock.Api.Repositories
 
         public async Task<MonthlyProfitReport> GetMonthlyProfitReportByMonth(int month, Guid userId)
         {
-            return await _context.MonthlyProfitReports.FirstOrDefaultAsync(x => x.Month == month && x.UserId == userId);
+            return await _context.MonthlyProfitReports.FirstOrDefaultAsync(x => x.Month == month);
         }
     }
 }
