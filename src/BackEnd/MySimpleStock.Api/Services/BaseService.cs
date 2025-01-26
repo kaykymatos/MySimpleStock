@@ -36,7 +36,7 @@ namespace MySimpleStock.Api.Services
                 entity.Id = mapperModel.Id.ToString();
                 return new ResponseApiModel<T>(entity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new ResponseApiModel<T>("Erro interno no servidor!");
             }

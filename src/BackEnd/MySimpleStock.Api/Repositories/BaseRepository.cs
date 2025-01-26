@@ -6,7 +6,7 @@ namespace MySimpleStock.Api.Repositories
 {
     public class BaseRepository<T> where T : BaseEntity
     {
-        private readonly ApplicationDbContextApi _context;
+        protected readonly ApplicationDbContextApi _context;
         public BaseRepository(ApplicationDbContextApi context)
         {
             _context = context;

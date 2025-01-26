@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <motion.nav 
-      className="backdrop-blur-md bg-white/10 border-b border-white/20 px-6 py-4"
+      className="backdrop-blur-md bg-white/10  border-b border-white/20 px-6 py-4"
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
     >

@@ -18,9 +18,6 @@ namespace MySimpleStock.Api.Validators
             RuleFor(x => x.ClientId)
                 .NotEmpty().WithMessage("O clientId deve ser preenchido.");
 
-            RuleForEach(x => x.SaleItems)
-            .SetValidator(new SaleItemValidator());
-
         }
     }
 }

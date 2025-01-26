@@ -102,6 +102,8 @@ namespace MySimpleStock.Api.Context
                 entity.HasKey(mpr => mpr.Id);
                 entity.Property(mpr => mpr.Month)
                       .IsRequired();
+                entity.Property(mpr => mpr.Year)
+                      .IsRequired();
                 entity.Property(mpr => mpr.TotalProfit)
                       .HasColumnType("decimal(18,2)");
                 entity.Property(s => s.CreationDate)

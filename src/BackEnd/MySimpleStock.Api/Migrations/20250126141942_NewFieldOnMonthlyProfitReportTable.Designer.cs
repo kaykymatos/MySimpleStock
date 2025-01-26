@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySimpleStock.Api.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MySimpleStock.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContextApi))]
-    partial class ApplicationDbContextApiModelSnapshot : ModelSnapshot
+    [Migration("20250126141942_NewFieldOnMonthlyProfitReportTable")]
+    partial class NewFieldOnMonthlyProfitReportTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace MySimpleStock.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("MySimpleStock.Api.Models.Entity.MonthlyProfitReport", b =>
@@ -82,7 +85,7 @@ namespace MySimpleStock.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MonthlyProfitReports", (string)null);
+                    b.ToTable("MonthlyProfitReports");
                 });
 
             modelBuilder.Entity("MySimpleStock.Api.Models.Entity.Product", b =>
@@ -118,7 +121,7 @@ namespace MySimpleStock.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MySimpleStock.Api.Models.Entity.Sale", b =>
@@ -146,7 +149,7 @@ namespace MySimpleStock.Api.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Sales", (string)null);
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("MySimpleStock.Api.Models.Entity.SaleItem", b =>
@@ -179,7 +182,7 @@ namespace MySimpleStock.Api.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleItems", (string)null);
+                    b.ToTable("SaleItems");
                 });
 
             modelBuilder.Entity("MySimpleStock.Api.Models.Entity.Sale", b =>

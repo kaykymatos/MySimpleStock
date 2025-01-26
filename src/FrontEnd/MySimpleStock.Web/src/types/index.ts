@@ -2,7 +2,6 @@
 export class BaseModel {
   id: string = "";
   userId: string = "";
-
 }
 
 // ProductViewModel
@@ -12,7 +11,6 @@ export class ProductModel extends BaseModel {
   costPrice: number = 0;
   salePrice: number = 0;
   quantityInStock: number = 0;
-
 }
 
 // ClientViewModel
@@ -27,8 +25,6 @@ export class ClientModel extends BaseModel {
 export class MonthlyProfitReportModel extends BaseModel {
   month: number = 0;
   totalProfit: number = 0;
-
- 
 }
 
 // SaleItemViewModel
@@ -37,18 +33,16 @@ export class SaleItemModel extends BaseModel {
   productId: string = "";
   quantity: number = 0;
   price: number = 0;
-
-  
+  product: ProductModel = new ProductModel();
 }
 
 // SaleViewModel
 export class SaleModel extends BaseModel {
   date: Date = new Date();
   totalValue: number = 0;
-  clientId: string="";
-  saleItems: SaleItemModel[]=[];
-
- 
+  clientId: string = "";
+  client: ClientModel = new ClientModel();
+  saleItems: SaleItemModel[] = [];
 }
 
 // ResponseApiModel
@@ -59,5 +53,4 @@ export class ResponseApiModel<T extends BaseModel> {
   statusCode: number = 0;
   errors: { property: string; message: string }[] = [];
   model?: T;
-
 }

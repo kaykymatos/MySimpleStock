@@ -67,8 +67,6 @@ namespace MySimpleStock.Api.Endpoints
             return app;
         }
 
-
-
         public static WebApplication MapClientEndpoints(this WebApplication app)
         {
             app.MapPost("/v1/clients", async (ClientViewModel product, IClientService _service, HttpContext http) =>
@@ -129,7 +127,6 @@ namespace MySimpleStock.Api.Endpoints
             return app;
         }
 
-
         public static WebApplication MapSaleEndpoints(this WebApplication app)
         {
             app.MapPost("/v1/sales", async (SaleViewModel sale, ISaleService _service,
@@ -141,30 +138,6 @@ namespace MySimpleStock.Api.Endpoints
 
                 sale.UserId = TestId;
                 var res = await _service.CreateAsync(sale);
-
-                foreach (var item in sale.SaleItems)
-                {
-                    item.UserId = sale.UserId;
-                    item.SaleId = sale.Id;
-                    await _saleItemservice.CreateAsync(item);
-                }
-                var existentMonthlyProfitReport = await _monthlyProfitReportService.GetMonthlyProfitReportByMonth(sale.Date.Month, sale.UserId);
-
-                if (existentMonthlyProfitReport != null)
-                {
-                    existentMonthlyProfitReport.TotalProfit += sale.TotalValue;
-                    await _monthlyProfitReportService.UpdateAsync(existentMonthlyProfitReport);
-                }
-                else
-                {
-
-                    await _monthlyProfitReportService.UpdateAsync(new MonthlyProfitReportViewModel
-                    {
-                        Month = sale.Date.Month,
-                        UserId = sale.UserId,
-                        TotalProfit = sale.TotalValue,
-                    });
-                }
 
                 return res.Success ? Results.Ok(res) : Results.BadRequest(res);
             });
