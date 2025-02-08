@@ -1,6 +1,4 @@
-﻿using MySimpleStock.Api.Models.ViewModel;
-
-namespace MySimpleStock.Api.Models.ViewModel
+﻿namespace MySimpleStock.Api.Models.ViewModel
 {
     public class SaleItemViewModel : BaseViewModel
     {

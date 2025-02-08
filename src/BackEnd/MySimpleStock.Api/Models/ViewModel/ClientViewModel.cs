@@ -1,4 +1,4 @@
-﻿using MySimpleStock.Api.Models.ViewModel;
+﻿using System.Text.Json.Serialization;
 
 namespace MySimpleStock.Api.Models.ViewModel
 {
@@ -8,5 +8,7 @@ namespace MySimpleStock.Api.Models.ViewModel
         public string Address { get; set; } = string.Empty;
         public string Cep { get; set; } = string.Empty;
         public string Number { get; set; } = string.Empty;
+        [JsonIgnore]
+        public ICollection<SaleViewModel> Sales { get; set; }
     }
 }

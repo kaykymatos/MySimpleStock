@@ -134,7 +134,7 @@ export const SaleForm: React.FC = () => {
             type="date"
             id="date"
             name="date"
-            value={formData.date.toISOString().split("T")[0]}
+            value={formData.date.toString().split("T")[0]}
             onChange={handleChange}
             className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             required

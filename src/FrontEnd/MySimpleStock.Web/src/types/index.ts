@@ -10,6 +10,7 @@ export class ProductModel extends BaseModel {
   description: string = "";
   costPrice: number = 0;
   salePrice: number = 0;
+  creationDate: Date = new Date();
   quantityInStock: number = 0;
 }
 
@@ -41,6 +42,7 @@ export class SaleModel extends BaseModel {
   date: Date = new Date();
   totalValue: number = 0;
   clientId: string = "";
+  creationDate: Date = new Date();
   client: ClientModel = new ClientModel();
   saleItems: SaleItemModel[] = [];
 }

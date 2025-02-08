@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MySimpleStock.Api.Models.ViewModel;
-using MySimpleStock.Api.Validators;
 
 namespace MySimpleStock.Api.Validators
 {

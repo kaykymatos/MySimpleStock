@@ -66,7 +66,7 @@ export const SaleList = () => {
                   <td className="border border-gray-300 px-4 py-2">
                     {x.totalValue.toFixed(2)}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 text-center">
+                  <td className="border border-gray-300 px-4 py-2 w-12 text-center">
                     <button
                       onClick={() => toggleRow(x.id)}
                       className="text-blue-500 hover:underline"

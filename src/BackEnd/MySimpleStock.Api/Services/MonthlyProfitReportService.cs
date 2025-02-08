@@ -3,7 +3,6 @@ using FluentValidation;
 using MySimpleStock.Api.Models.Entity;
 using MySimpleStock.Api.Models.ViewModel;
 using MySimpleStock.Api.Repositories;
-using MySimpleStock.Api.Services;
 
 namespace MySimpleStock.Api.Services
 {
@@ -15,9 +14,9 @@ namespace MySimpleStock.Api.Services
             _repostory = repository;
         }
 
-        public async Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, string userId)
+        public async Task<MonthlyProfitReportViewModel> GetMonthlyProfitReportByMonth(int month, int year, Guid userId)
         {
-            return _mapper.Map<MonthlyProfitReportViewModel>(await _repostory.GetMonthlyProfitReportByMonth(month,Guid.Parse(userId) ));
+            return _mapper.Map<MonthlyProfitReportViewModel>(await _repostory.GetMonthlyProfitReportByMonth(month, year, userId));
         }
     }
 }

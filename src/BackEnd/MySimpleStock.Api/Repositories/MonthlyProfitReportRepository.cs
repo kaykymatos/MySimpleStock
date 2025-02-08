@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MySimpleStock.Api.Context;
 using MySimpleStock.Api.Models.Entity;
-using MySimpleStock.Api.Repositories;
 
 namespace MySimpleStock.Api.Repositories
 {
@@ -15,7 +14,12 @@ namespace MySimpleStock.Api.Repositories
 
         public async Task<MonthlyProfitReport> GetMonthlyProfitReportByMonth(int month, Guid userId)
         {
-            return await _context.MonthlyProfitReports.FirstOrDefaultAsync(x => x.Month == month);
+            return await _context.MonthlyProfitReports.FirstOrDefaultAsync(x => x.Month == month && x.UserId == userId);
+        }
+
+        public async Task<MonthlyProfitReport> GetMonthlyProfitReportByMonth(int month, int year, Guid userId)
+        {
+            return await _context.MonthlyProfitReports.FirstOrDefaultAsync(x => x.Month == month && x.Year == year && x.UserId == userId);
         }
     }
 }

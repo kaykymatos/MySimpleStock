@@ -147,8 +147,17 @@ namespace MySimpleStock.Api.Endpoints
                 //var userId = http.User.FindFirst("sub")?.Value;
                 //if (userId == null) return Results.Unauthorized();
 
-                var sales = await _service.GetAllAsync(Guid.Parse(TestId));
-                return Results.Ok(sales);
+                IEnumerable<SaleViewModel> sales = await _service.GetAllAsync(Guid.Parse(TestId));
+
+                try
+                {
+                    return Results.Ok(sales);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+
             });
 
             app.MapGet("/v1/sales/{id:Guid}", async (Guid id, ISaleService _service, HttpContext http) =>
@@ -171,6 +180,14 @@ namespace MySimpleStock.Api.Endpoints
                 //if (userId == null) return Results.Unauthorized();
 
                 var reports = await _service.GetAllAsync(Guid.Parse(TestId));
+                return Results.Ok(reports);
+            });
+            app.MapGet("/v1/profit-reports/get-by-month-and-year/{month:int}/{year:int}", async (int month, int year, IMonthlyProfitReportService _service, HttpContext http) =>
+            {
+                //var userId = http.User.FindFirst("sub")?.Value;
+                //if (userId == null) return Results.Unauthorized();
+
+                var reports = await _service.GetMonthlyProfitReportByMonth(month, year, Guid.Parse(TestId));
                 return Results.Ok(reports);
             });
             return app;

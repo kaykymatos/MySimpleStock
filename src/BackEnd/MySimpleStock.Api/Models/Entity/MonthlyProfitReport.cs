@@ -1,6 +1,4 @@
-﻿using MySimpleStock.Api.Models.Entity;
-
-namespace MySimpleStock.Api.Models.Entity
+﻿namespace MySimpleStock.Api.Models.Entity
 {
     public class MonthlyProfitReport : BaseEntity
     {

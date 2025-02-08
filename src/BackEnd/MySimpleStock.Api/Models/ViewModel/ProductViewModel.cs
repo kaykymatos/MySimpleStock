@@ -1,6 +1,4 @@
-﻿using MySimpleStock.Api.Models.ViewModel;
-
-namespace MySimpleStock.Api.Models.ViewModel
+﻿namespace MySimpleStock.Api.Models.ViewModel
 {
     public class ProductViewModel : BaseViewModel
     {
@@ -9,5 +7,6 @@ namespace MySimpleStock.Api.Models.ViewModel
         public decimal CostPrice { get; set; }
         public decimal SalePrice { get; set; }
         public int QuantityInStock { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

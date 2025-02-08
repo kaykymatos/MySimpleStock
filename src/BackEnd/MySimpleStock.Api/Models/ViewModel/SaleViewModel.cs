@@ -1,7 +1,4 @@
-﻿using MySimpleStock.Api.Models.Entity;
-using MySimpleStock.Api.Models.ViewModel;
-
-namespace MySimpleStock.Api.Models.ViewModel
+﻿namespace MySimpleStock.Api.Models.ViewModel
 {
     public class SaleViewModel : BaseViewModel
     {
@@ -15,7 +12,8 @@ namespace MySimpleStock.Api.Models.ViewModel
 
         public decimal TotalValue { get; set; }
         public string ClientId { get; set; }
-        public ClientViewModel Client{ get; set; }
+        public ClientViewModel Client { get; set; }
+        public DateTime CreationDate { get; set; }
         public ICollection<SaleItemViewModel> SaleItems { get; set; }
 
     }

@@ -3,7 +3,6 @@ using FluentValidation;
 using MySimpleStock.Api.Models.Entity;
 using MySimpleStock.Api.Models.ViewModel;
 using MySimpleStock.Api.Repositories;
-using MySimpleStock.Api.Services;
 
 namespace MySimpleStock.Api.Services
 {

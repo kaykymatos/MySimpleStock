@@ -10,8 +10,8 @@ namespace MySimpleStock.Api.ModelMapper
         {
             // Configuração de mapeamento
             CreateMap<MonthlyProfitReport, MonthlyProfitReportViewModel>().ReverseMap();
-            CreateMap<Product, ProductViewModel>().ReverseMap(); 
-            CreateMap<Sale, SaleViewModel>();
+            CreateMap<Product, ProductViewModel>().ReverseMap();
+            CreateMap<Sale, SaleViewModel>().ReverseMap();
 
             CreateMap<SaleItem, SaleItemViewModel>().ReverseMap();
             CreateMap<Client, ClientViewModel>().ReverseMap();
